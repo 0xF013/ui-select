@@ -896,7 +896,7 @@
 
         var searchInput = element.querySelectorAll('input.ui-select-search');
 
-        $select.generatedId = uiSelectConfig.generateId();
+        $select.htmlId = attrs.htmlIdPrefix || uiSelectConfig.generateId();
         $select.ariaLabel = attrs.title;
         $select.multiple = angular.isDefined(attrs.multiple) && (
             attrs.multiple === '' ||

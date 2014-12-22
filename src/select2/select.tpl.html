@@ -10,9 +10,9 @@
       <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
        role="combobox"
        aria-expanded="true"
-       aria-owns="ui-select-choices-{{ $select.generatedId }}"
+       aria-owns="ui-select-choices-{{ $select.htmlId }}"
        aria-label="{{ $select.ariaLabel }}"
-       aria-activedescendant="ui-select-choices-row-{{ $select.generatedId }}-{{ $select.activeIndex }}"
+       aria-activedescendant="ui-select-choices-row-{{ $select.htmlId }}-{{ $select.activeIndex }}"
              class="ui-select-search select2-input"
              ng-model="$select.search">
     </div>
