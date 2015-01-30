@@ -1,7 +1,7 @@
 /*!
  * ui-select
  * http://github.com/angular-ui/ui-select
- * Version: 0.9.6 - 2015-01-20T09:14:48.423Z
+ * Version: 0.9.6 - 2015-01-30T10:27:32.875Z
  * License: MIT
  */
 
@@ -245,6 +245,14 @@
         });
       }
     };
+
+    $scope.$watch('$select.items', function() {
+      $timeout(function() {
+        var ad = _searchInput.attr('aria-activedescendant');
+        _searchInput.attr('aria-activedescendant', '');
+        _searchInput.attr('aria-activedescendant', ad);
+      });
+    });
 
     ctrl.findGroupByName = function(name) {
       return ctrl.groups && ctrl.groups.filter(function(group) {
