@@ -238,7 +238,7 @@
       }
     };
 
-    $scope.$watch('$select.items', function() {
+    $scope.$watchCollection('$select.items', function() {
       $timeout(function() {
         var ad = _searchInput.attr('aria-activedescendant');
         _searchInput.attr('aria-activedescendant', '');
@@ -519,6 +519,23 @@
       });
     };
 
+    ctrl.getAriaOwns = function() {
+      if (ctrl.activeMatchIndex == -1) {
+        return 'ui-select-choices-' + ctrl.generatedId;
+      } else {
+        return 'ui-select2-choices-' + ctrl.generatedId;
+      }
+    };
+
+    ctrl.getActiveDescendant = function() {
+      if (ctrl.activeMatchIndex == -1) {
+        return 'ui-select-choices-row-' + ctrl.generatedId + '-' + ctrl.activeIndex;
+      } else {
+        return 'ui-select2-choices-row-' + ctrl.generatedId + '-' + ctrl.activeMatchIndex;
+      }
+
+    };
+
     ctrl.getPlaceholder = function(){
       //Refactor single?
       if(ctrl.multiple && ctrl.selected.length) return;
@@ -698,9 +715,9 @@
 
     _searchInput.on('keyup', function(e) {
       if ( ! KEY.isVerticalMovement(e.which) ) {
-        $scope.$evalAsync( function () {
-          ctrl.activeIndex = ctrl.taggingLabel === false ? -1 : 0;
-        });
+        // $scope.$evalAsync( function () {
+        //   ctrl.activeIndex = ctrl.taggingLabel === false ? -1 : 0;
+        // });
       }
       // Push a "create new" item into array if there is a search string
       if ( ctrl.tagging.isActivated && ctrl.search.length > 0 ) {
