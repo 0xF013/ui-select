@@ -79,6 +79,36 @@ uis.controller('uiSelectCtrl',
     }
   };
 
+  // update activedescendant to toggle screenreader
+  // rereading
+  $scope.$watchCollection('$select.items', function() {
+    $timeout(function() {
+      var ad = _searchInput.attr('aria-activedescendant');
+      _searchInput.attr('aria-activedescendant', '');
+      _searchInput.attr('aria-activedescendant', ad);
+    });
+  });
+
+  // these two functions allow switching the readerbetween
+  // pronouncing current options from the dropdown menu
+  // and the existing multiple choices
+  ctrl.getAriaOwns = function() {
+    if (ctrl.activeMatchIndex == -1) {
+      return 'ui-select-choices-' + ctrl.generatedId;
+    } else {
+      return 'ui-select-made-choices-' + ctrl.generatedId;
+    }
+  };
+
+  ctrl.getActiveDescendant = function() {
+    if (ctrl.activeMatchIndex == -1) {
+      return 'ui-select-choices-row-' + ctrl.generatedId + '-' + ctrl.activeIndex;
+    } else {
+      return 'ui-select-made-choices-row-' + ctrl.generatedId + '-' + ctrl.activeMatchIndex;
+    }
+  };
+
+
   ctrl.findGroupByName = function(name) {
     return ctrl.groups && ctrl.groups.filter(function(group) {
       return group.name === name;
