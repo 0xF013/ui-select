@@ -75,6 +75,7 @@ uis.controller('uiSelectCtrl',
       $timeout(function() {
         ctrl.search = initSearchValue || ctrl.search;
         _searchInput[0].focus();
+        reloadActiveDescendant();
       });
     }
   };
@@ -82,12 +83,14 @@ uis.controller('uiSelectCtrl',
   // update activedescendant to toggle screenreader
   // rereading
   $scope.$watchCollection('$select.items', function() {
-    $timeout(function() {
-      var ad = _searchInput.attr('aria-activedescendant');
-      _searchInput.attr('aria-activedescendant', '');
-      _searchInput.attr('aria-activedescendant', ad);
-    });
+    $timeout(reloadActiveDescendant);
   });
+
+  function reloadActiveDescendant() {
+    var ad = _searchInput.attr('aria-activedescendant');
+    _searchInput.attr('aria-activedescendant', '');
+    _searchInput.attr('aria-activedescendant', ad);
+  }
 
   // these two functions allow switching the readerbetween
   // pronouncing current options from the dropdown menu
