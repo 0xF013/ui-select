@@ -1,7 +1,7 @@
 /*!
  * ui-select
  * http://github.com/angular-ui/ui-select
- * Version: 0.10.0 - 2015-03-09T15:14:44.047Z
+ * Version: 0.10.0 - 2015-03-10T11:54:53.681Z
  * License: MIT
  */
 
@@ -1550,7 +1550,10 @@ uis.directive('uiSelectSort', ['$timeout', 'uiSelectConfig', 'uiSelectMinErr', f
         element.on('drop', dropHandler);
       });
 
-      element.on('dragleave', function() {
+      element.on('dragleave', function(e) {
+        if (e.target != element) {
+          return;
+        }
         element.removeClass(droppingClassName);
         element.removeClass(droppingBeforeClassName);
         element.removeClass(droppingAfterClassName);
