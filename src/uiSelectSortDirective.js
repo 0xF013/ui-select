@@ -120,10 +120,7 @@ uis.directive('uiSelectSort', ['$timeout', 'uiSelectConfig', 'uiSelectMinErr', f
         element.on('drop', dropHandler);
       });
 
-      element.on('dragleave', function(e) {
-        if (e.target != element) {
-          return;
-        }
+      element.on('dragleave', function() {
         element.removeClass(droppingClassName);
         element.removeClass(droppingBeforeClassName);
         element.removeClass(droppingAfterClassName);
