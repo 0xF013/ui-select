@@ -30,12 +30,13 @@ uis.directive('uiSelectSort', ['$timeout', 'uiSelectConfig', 'uiSelectMinErr', f
 
       element.on('dragstart', function(e) {
         element.addClass(draggingClassName);
-
+        $select.searchInput.css('pointer-events', 'none');
         (e.dataTransfer || e.originalEvent.dataTransfer).setData('text/plain', scope.$index);
       });
 
       element.on('dragend', function() {
         element.removeClass(draggingClassName);
+        $select.searchInput.css('pointer-events', '');
       });
 
       var move = function(from, to) {

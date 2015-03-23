@@ -21,6 +21,7 @@ uis.directive('uiSelect',
       var ngModel = ctrls[1];
 
       var searchInput = element.querySelectorAll('input.ui-select-search');
+      $select.searchInput = searchInput;
 
       $select.generatedId = uiSelectConfig.generateId();
       $select.baseTitle = attrs.title || 'Select box';

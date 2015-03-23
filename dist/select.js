@@ -1,7 +1,7 @@
 /*!
  * ui-select
  * http://github.com/angular-ui/ui-select
- * Version: 0.10.0 - 2015-03-23T11:47:16.618Z
+ * Version: 0.10.0 - 2015-03-23T14:51:37.715Z
  * License: MIT
  */
 
@@ -1068,6 +1068,7 @@ uis.directive('uiSelect',
       var ngModel = ctrls[1];
 
       var searchInput = element.querySelectorAll('input.ui-select-search');
+      $select.searchInput = searchInput;
 
       $select.generatedId = uiSelectConfig.generateId();
       $select.baseTitle = attrs.title || 'Select box';
@@ -1460,12 +1461,13 @@ uis.directive('uiSelectSort', ['$timeout', 'uiSelectConfig', 'uiSelectMinErr', f
 
       element.on('dragstart', function(e) {
         element.addClass(draggingClassName);
-
+        $select.searchInput.css('pointer-events', 'none');
         (e.dataTransfer || e.originalEvent.dataTransfer).setData('text/plain', scope.$index);
       });
 
       element.on('dragend', function() {
         element.removeClass(draggingClassName);
+        $select.searchInput.css('pointer-events', '');
       });
 
       var move = function(from, to) {
